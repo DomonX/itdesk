@@ -1,0 +1,34 @@
+<div style="display: flex; align-items: center; padding: 32px 0">
+  <p style="margin-bottom: 0">Zmień status:</p>
+  <nz-switch style="margin-left: 16px" [(ngModel)]="changeStatus"></nz-switch>
+</div>
+
+<div *ngIf="changeStatus" class="status-wrapper">
+  <p style="margin-bottom: 0">Status:</p>
+  <nz-select [(ngModel)]="status" nzSize="large">
+    <nz-option
+      *ngFor="let option of options"
+      [nzValue]="option[1]"
+      [nzLabel]="option[1]"
+    ></nz-option>
+  </nz-select>
+</div>
+
+<div class="progress-wrapper">
+  <p style="margin-bottom: 0">Postęp:</p>
+
+  <nz-slider [(ngModel)]="progress"></nz-slider>
+  <nz-progress
+    [nzPercent]="progress"
+    nzType="circle"
+    [nzWidth]="50"
+  ></nz-progress>
+</div>
+
+<div class="comment-wrapper">
+  <textarea nz-input [(ngModel)]="comment"></textarea>
+</div>
+
+<div class="footer">
+  <button nzType="primary" nz-button (click)="save()">Zapisz</button>
+</div>

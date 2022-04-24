@@ -1,0 +1,40 @@
+<nz-table #basicTable [nzData]="(tickets$ | async) || []">
+  <thead>
+    <tr>
+      <th>Tytuł</th>
+      <th>Data zgłoszenia</th>
+      <th>Zgłaszający</th>
+      <th>Wykonujący</th>
+      <th>Postęp</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>
+        <a [routerLink]="['../', data?.id]">{{ data?.title }}</a>
+      </td>
+      <td>{{ data?.date?.format("DD MMMM YYYY H:MM") }}</td>
+      <td>{{ data?.applicant?.firstName }} {{ data?.applicant?.lastName }}</td>
+      <td>{{ data?.executive?.firstName }} {{ data?.executive?.lastName }}</td>
+      <td>
+        <nz-progress
+          [nzPercent]="data?.progress"
+          nzType="circle"
+          [nzWidth]="55"
+        ></nz-progress>
+      </td>
+      <td>
+        <button
+          *ngIf="data.status === 'Do wykonania' || data.status === 'Wstrzymano'"
+          (click)="takeTicket(data.id)"
+          nz-button
+          nzType="primary"
+        >
+          <i nz-icon nzType="select"></i>
+          Przyjmij
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

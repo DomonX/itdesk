@@ -1,0 +1,18 @@
+<nz-alert
+  nzType="warning"
+  nzMessage="Zgłoszenie zostanie przekazane do działu IT, jego stan możesz sprawdzić w sekcji Moje zgłoszenia"
+  [nzAction]="goToMyAction"
+>
+</nz-alert>
+<ng-template #goToMyAction>
+  <button nz-button nzSize="small" nzType="primary" nzGhost (click)="goToMy()">
+    Przejdz do moich zgłoszeń
+  </button>
+</ng-template>
+<span style="display: block; margin-top: 32px">Tytuł zgłoszenia</span>
+<input nz-input [(ngModel)]="title" />
+Opis zgłoszenia
+<textarea rows="4" nz-input [(ngModel)]="description"></textarea>
+<button style="margin-top: 32px" (click)="add()" nz-button nzType="primary">
+  Dodaj
+</button>

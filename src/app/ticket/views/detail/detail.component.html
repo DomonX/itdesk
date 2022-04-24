@@ -1,0 +1,43 @@
+<div *ngIf="ticket$ | async as ticket" class="container">
+  <div class="first-section section">
+    <h2>{{ ticket.title }}</h2>
+    <p>{{ ticket.description }}</p>
+    <span style="font-weight: 500">Zgłoszono:</span>
+    <p>{{ ticket.date.format("DD MMMM YYYY") }}</p>
+  </div>
+
+  <div class="second-section section">
+    <div *ngIf="ticket?.applicant" class="person">
+      <p>Zgłaszający</p>
+      <span>
+        {{ ticket?.applicant?.firstName }} {{ ticket?.applicant?.lastName }}
+      </span>
+    </div>
+
+    <div *ngIf="ticket?.executive" class="person">
+      <p>Technik wykonujący</p>
+      <span>
+        {{ ticket?.executive?.firstName }} {{ ticket?.executive?.lastName }}
+      </span>
+    </div>
+  </div>
+  <div class="third-section section">
+    <nz-progress
+      [nzPercent]="ticket?.progress"
+      nzType="circle"
+      [nzWidth]="150"
+    ></nz-progress>
+  </div>
+
+  <nz-timeline class="fourth-section section">
+    <nz-timeline-item
+      *ngFor="let comment of ticket?.comments"
+      [nzColor]="getStatusColor(comment.status)"
+    >
+      <div *ngFor="let entry of comment.entries">
+        <span>{{ entry.date.format("DD MMMM YYYY HH:mm") }}</span> -
+        <span>{{ entry.label }}</span>
+      </div>
+    </nz-timeline-item>
+  </nz-timeline>
+</div>

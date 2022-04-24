@@ -1,0 +1,30 @@
+.progress-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  nz-slider {
+    flex: 1;
+    margin-right: 32px;
+  }
+  p {
+    width: 100%;
+  }
+  margin-bottom: 32px;
+}
+
+.status-wrapper {
+  width: 100%;
+  nz-select {
+    width: 100%;
+  }
+  margin-bottom: 32px;
+}
+
+.comment-wrapper {
+  margin-bottom: 32px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
