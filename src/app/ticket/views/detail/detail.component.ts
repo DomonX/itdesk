@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SecurityContext } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, switchMap } from 'rxjs';
 import { ITicket, TicketStatus } from '../../models/ticket.models';
@@ -9,19 +10,22 @@ import { TicketService } from '../../services/ticket.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent {
   public ticket$: Observable<ITicket>;
 
   constructor(
     private route: ActivatedRoute,
-    private ticketService: TicketService
+    private ticketService: TicketService,
+    private sanitizer: DomSanitizer
   ) {
     this.ticket$ = this.route.params.pipe(
       switchMap(({ id }) => this.ticketService.getTicketById(id))
     );
   }
 
-  ngOnInit(): void {}
+  public sanitize(url: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 
   public getStatusColor(
     status: TicketStatus

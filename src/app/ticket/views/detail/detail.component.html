@@ -28,6 +28,14 @@
       [nzWidth]="150"
     ></nz-progress>
   </div>
+  <div *ngIf="ticket?.images?.length" class="gallery">
+    <p>Załączniki</p>
+    <img
+      *ngFor="let url of ticket?.images"
+      [src]="sanitize(url)"
+      class="gallery-item"
+    />
+  </div>
 
   <nz-timeline class="fourth-section section">
     <nz-timeline-item

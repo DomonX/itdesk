@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @NgModule({
   declarations: [AddTicketComponent],
@@ -17,6 +18,7 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
     NzButtonModule,
     NzMessageModule,
     NzAlertModule,
+    NzIconModule,
     RouterModule.forChild([{ path: '', component: AddTicketComponent }]),
   ],
 })

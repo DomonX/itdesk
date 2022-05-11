@@ -29,4 +29,5 @@ export interface ITicket {
   progress: number;
   status: TicketStatus;
   comments: ITicketComment[];
+  images: string[];
 }

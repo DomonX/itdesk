@@ -11,6 +11,7 @@ export const TICKET_MOCK: Record<string, ITicket> = {
     applicant: AUTH_MOCK[AUTH_MOCK_IDS[0]].person,
     progress: 0,
     comments: [],
+    images: [],
     status: TicketStatus.TODO,
   },
   'db5b2811-d02f-4e8e-8313-a74f89ad8829': {
@@ -21,6 +22,7 @@ export const TICKET_MOCK: Record<string, ITicket> = {
     applicant: AUTH_MOCK[AUTH_MOCK_IDS[1]].person,
     executive: AUTH_MOCK[AUTH_MOCK_IDS[0]].person,
     progress: 0,
+    images: [],
     comments: [
       {
         status: TicketStatus.TODO,
@@ -53,6 +55,7 @@ export const TICKET_MOCK: Record<string, ITicket> = {
     executive: AUTH_MOCK[AUTH_MOCK_IDS[2]].person,
     status: TicketStatus.DONE,
     progress: 100,
+    images: [],
     comments: [
       {
         status: TicketStatus.TODO,

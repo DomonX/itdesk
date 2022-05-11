@@ -74,7 +74,7 @@ export class TicketService {
     return this._change.pipe(map((i) => Object.values(this._items)));
   }
 
-  public addTicket(title: string, description: string): string {
+  public addTicket(title: string, description: string, images: string[] = []): string {
     const id = uuidv4();
 
     const user = this.authService.currentUser();
@@ -86,6 +86,7 @@ export class TicketService {
       date: dayjs(),
       description,
       progress: 0,
+      images,
       comments: [
         {
           status: TicketStatus.TODO,
