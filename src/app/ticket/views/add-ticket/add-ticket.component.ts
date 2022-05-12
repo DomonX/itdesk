@@ -8,24 +8,16 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   templateUrl: './add-ticket.component.html',
   styleUrls: ['./add-ticket.component.scss'],
 })
-export class AddTicketComponent implements OnInit {
+export class AddTicketComponent {
   public description: string = '';
   public title: string = '';
-  public files: File[] = [];
-
-  @ViewChild('fileInput') fileInput!: HTMLInputElement;
+  private files: File[] = [];
 
   constructor(
     private ticketService: TicketService,
     private router: Router,
     private message: NzMessageService
   ) {}
-
-  public ngOnInit(): void {}
-
-  public get fileNames(): string[] {
-    return this.files.map((i) => i.name);
-  }
 
   public goToMy(): void {
     this.router.navigate(['tickets', 'my']);
@@ -45,29 +37,7 @@ export class AddTicketComponent implements OnInit {
     this.router.navigate(['tickets', 'my']);
   }
 
-  public onFileChange(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    const newFiles = Array.from(target?.files ?? []);
-    this.files.push(...newFiles);
-    target.files = new FileList();
-  }
-
-  public onDropFiles(
-    event: MouseEvent & { dataTransfer: DataTransfer | null }
-  ): void {
-    this.prevent(event);
-    this.files = [
-      ...this.files,
-      ...Array.from(event?.dataTransfer?.files ?? []),
-    ];
-  }
-
-  public removeFile(index: number): void {
-    this.files.splice(index, 1);
-  }
-
-  public prevent(event: Event): void {
-    event.preventDefault();
-    event.stopPropagation();
+  public onFilesChanged(files: File[]): void {
+    this.files = files;
   }
 }

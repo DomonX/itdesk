@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { AuthService } from 'src/app/auth/services/auth/auth.service';
+import { Observable } from 'rxjs';
 import { TicketService } from '../../services/ticket.service';
 
-import { switchMap, tap } from 'rxjs/operators';
 import { ITicket } from '../../models/ticket.models';
 
 @Component({
@@ -11,13 +9,12 @@ import { ITicket } from '../../models/ticket.models';
   templateUrl: './all-tickets.component.html',
   styleUrls: ['./all-tickets.component.scss'],
 })
-export class AllTicketsComponent implements OnInit {
+export class AllTicketsComponent {
   public tickets$: Observable<ITicket[]>;
 
   constructor(private ticketService: TicketService) {
     this.tickets$ = this.ticketService.getAll();
   }
-  ngOnInit(): void {}
 
   public takeTicket(id: string): void {
     this.ticketService.signToTicket(id);

@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ITicket,
-  ITicketComment,
-  ITicketEntry,
-  TicketStatus,
-} from '../models/ticket.models';
+import { ITicket, ITicketEntry, TicketStatus } from '../models/ticket.models';
 import { v4 as uuidv4 } from 'uuid';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
@@ -74,7 +69,11 @@ export class TicketService {
     return this._change.pipe(map((i) => Object.values(this._items)));
   }
 
-  public addTicket(title: string, description: string, images: string[] = []): string {
+  public addTicket(
+    title: string,
+    description: string,
+    images: string[] = []
+  ): string {
     const id = uuidv4();
 
     const user = this.authService.currentUser();
@@ -103,9 +102,15 @@ export class TicketService {
 
   public updateTicket(
     id: string,
-    dto: { comment: string; progress: number; status?: TicketStatus }
+    dto: {
+      comment: string;
+      progress: number;
+      status?: TicketStatus;
+      images?: string[];
+    }
   ): void {
     const newTicket = { ...this._items[id] };
+
     let comments = newTicket.comments;
 
     const entry: ITicketEntry = { label: dto.comment, date: dayjs() };
@@ -121,6 +126,7 @@ export class TicketService {
 
     newTicket.comments = comments;
     newTicket.progress = dto.progress;
+    newTicket.images = [...(dto.images ?? []), ...newTicket.images];
 
     this._items[id] = newTicket;
   }

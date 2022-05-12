@@ -16,7 +16,6 @@
 
 <div class="progress-wrapper">
   <p style="margin-bottom: 0">Postęp:</p>
-
   <nz-slider [(ngModel)]="progress"></nz-slider>
   <nz-progress
     [nzPercent]="progress"
@@ -28,6 +27,8 @@
 <div class="comment-wrapper">
   <textarea nz-input [(ngModel)]="comment"></textarea>
 </div>
+
+<app-file-upload (filesChanged)="filesChanged($event)"></app-file-upload>
 
 <div class="footer">
   <button nzType="primary" nz-button (click)="save()">Zapisz</button>

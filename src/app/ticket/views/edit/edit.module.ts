@@ -10,6 +10,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { FileUploadModule } from '../../components/file-upload/file-upload.module';
 @NgModule({
   declarations: [EditComponent],
   imports: [
@@ -22,6 +23,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzButtonModule,
     NzSwitchModule,
     NzMessageModule,
+    FileUploadModule,
     RouterModule.forChild([{ path: '', component: EditComponent }]),
   ],
 })

@@ -13,37 +13,7 @@
 <input nz-input [(ngModel)]="title" />
 Opis zgłoszenia
 <textarea rows="4" nz-input [(ngModel)]="description"></textarea>
-<div style="display: flex; gap: 8px; margin-top: 16px">
-  <input
-    #fileInput
-    style="display: none"
-    type="file"
-    nz-input
-    (change)="onFileChange($event)"
-    multiple
-  />
-
-  <div
-    class="drop-zone"
-    (click)="fileInput.click()"
-    (dragover)="prevent($event)"
-    (dragenter)="prevent($event)"
-    (drop)="onDropFiles($event)"
-  >
-    Przeciągnij lub kliknij, aby dodać pliki
-  </div>
-  <div class="file-list">
-    <div *ngFor="let name of fileNames; let i = index">
-      <span style="margin-right: 4px">{{ name }}</span>
-      <i
-        style="cursor: pointer; color: red"
-        nz-icon
-        nzType="close-circle"
-        (click)="removeFile(i)"
-      ></i>
-    </div>
-  </div>
-</div>
+<app-file-upload (filesChanged)="onFilesChanged($event)"> </app-file-upload>
 <button style="margin-top: 32px" (click)="add()" nz-button nzType="primary">
   Dodaj
 </button>

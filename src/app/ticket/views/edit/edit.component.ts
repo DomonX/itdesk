@@ -21,6 +21,8 @@ export class EditComponent {
 
   public ticket$: Observable<ITicket>;
 
+  public files: File[] = [];
+
   private id!: string;
 
   constructor(
@@ -49,7 +51,12 @@ export class EditComponent {
       comment: this.comment,
       progress: this.progress,
       status: this.changeStatus ? this.status : undefined,
+      images: this.files.map((i) => URL.createObjectURL(i)),
     });
     this.router.navigate(['tickets', 'manage']);
+  }
+
+  public filesChanged(files: File[]): void {
+    this.files = files;
   }
 }

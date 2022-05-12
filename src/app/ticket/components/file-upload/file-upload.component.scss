@@ -1,0 +1,14 @@
+.drop-zone {
+  border: 2px dashed #ccc;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+}

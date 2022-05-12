@@ -8,6 +8,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { FileUploadModule } from '../../components/file-upload/file-upload.module';
 
 @NgModule({
   declarations: [AddTicketComponent],
@@ -18,7 +19,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzButtonModule,
     NzMessageModule,
     NzAlertModule,
-    NzIconModule,
+    FileUploadModule,
     RouterModule.forChild([{ path: '', component: AddTicketComponent }]),
   ],
 })
